@@ -1,0 +1,240 @@
+body {
+  background-image: url(./mainMenuBackground.png);
+  background-repeat: no-repeat;
+  background-color: #010127;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Rye', Times, serif;
+}
+
+ul {
+  text-align: center;
+  list-style-position: inside;
+  display: flex; 
+  flex-direction: column; 
+}
+
+ul li {
+  margin-bottom: 50px;
+  border-style: double;
+  border: 15px solid lime;
+  border-radius: 15px;
+  padding: 20px;
+  background-color: #003f00;
+  display: inline-block;
+}
+
+.nav {
+  font-family: 'Rye', Times, serif;
+  font-size: 50px;
+  list-style-type: none;
+  color: lime;
+  font-weight: bold;
+  text-align: center
+}
+
+.back {
+  display: inline-block;
+  font-family: 'Rye', Times, serif;
+  color: white;
+  font-size: 50px;
+  margin-left: 20px;
+  margin-top: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.rightNav {
+  font-family: 'Rye', Times, serif;
+  font-size: 50px;
+  list-style-type: none;
+  color: white;
+  margin-left: 600px;
+  margin-top: 175px;
+  display: inline-block;
+}
+
+.glow {
+  font-size: 80px;
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+/* @-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e66800, 0 0 40px #e66800, 0 0 50px #e66800, 0 0 60px #e66800, 0 0 70px #e66800;
+  }
+  to {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e66800, 0 0 40px #e66800, 0 0 50px #e66800, 0 0 60px #e66800, 0 0 70px #e66800;
+  }
+} */
+
+/* Blackjack Styles
+Green background box for the game area */
+#game-area {
+  background-color: #007f00; /* Dark green background */
+  padding: 20px;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 1200px;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column; /* Stack the elements vertically */
+  align-items: center;
+}
+
+/* Position the game result above the hands */
+#game-result {
+  font-size: 1.5rem;
+  font-family: 'Rye', Times, serif;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px; /* Add space between result and the hands */
+  color: #fff;
+}
+/* Container hands */
+#hands-container {
+  display: flex;
+  justify-content: center;  /* Space out the two hands */
+  /* width: 100%; Ensure it takes full width */
+  padding: 10px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Player and dealer hands */
+#player-hand, #dealer-hand, #poker-hand {
+  flex: 1 1 10vw; /* Allow hands to take up available space equally */
+  max-width: 500px; /* Ensure hands don't stretch too much */
+  background-color: #003f00; /* Slightly darker green for card sections */
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#dealer-hand {
+  flex: 1 1 10vw;
+  background-color: #003f00;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/*Keep cards in a row */
+#player-cards, #dealer-cards {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+h2 {
+  font-family: 'Rye', Times, serif;
+  color: #fff;
+  font-size: 1.5em;
+}
+
+/* Style for card placeholders */
+#player-cards div, #dealer-cards div {
+  background-color: #004000; /* Dark green for placeholder */
+  color: #fff;
+  border: 2px solid #006400; /* Darker green border */
+  border-radius: 5px;
+  padding: 10px;
+  width: 60px;
+  height: 90px;
+  margin: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
+  text-align: center;
+}
+
+.card-image {
+  width: 12vw;  /* Default width for larger screens */
+  height: auto;
+  max-width: 120px;
+  min-width: 60px;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+.card-image.flip {
+  transform: rotateY(180deg);
+}
+
+.card-back {
+  /* Make sure the back of the card is styled */
+  backface-visibility: hidden;
+}
+
+.inactive {
+  background-color: black;
+}
+
+@media (max-width: 1200px) {
+  .card-image {
+    width: 15vw;  /* Adjust the card size for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .card-image {
+    width: 20vw;  /* Adjust for smaller screens (tablets and phones) */
+  }
+}
+
+@media (max-width: 480px) {
+  .card-image {
+    width: 25vw;  /* Further adjust for very small screens */
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #326341;
+  color: white;
+  border-style: double;
+  border-radius: 5px;
+  border: 2px solid white;
+  cursor: pointer;
+  width: auto;
+}
+
+button:hover {
+  background-color: rgb(0, 240, 72);
+}

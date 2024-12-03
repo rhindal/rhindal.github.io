@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Rye" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <title>Poker</title>
+</head>
+<body>
+  <h1 class="glow">Poker</h1>
+  <a class="back" href="index.html">Back</a>
+  <div id="game-area">
+    <div id="game-result" class="result">
+      <!-- Result here-->
+    </div>
+    <div id="hands-container">
+      <div id="player-hand">
+        <div id="player-money"></div>
+        <h2>Your Hand</h2>
+        <div id="player-cards"></div>
+        <div class="button-container">
+          <button type="button" id="bet-button">Bet</button>
+          <button type="button" id="call-button">Call</button>
+          <button type="button" id="fold-button">Fold</button>
+          <button type="button" id="next-phase-button">Next Phase</button>
+          <button type="button" id="next-hand-button">Next Hand</button>
+        </div>
+      </div>
+      <div id="dealer-hand">
+        <h2>Dealer's Hand</h2>
+        <div id="dealer-cards"></div>
+      </div>
+    </div>
+    <div id="poker-hand">
+      <h2>Flop, Turn, River</h2>
+      <div id="poker-cards"></div>
+    </div>
+  </div>
+  <script type="module" src="../scripts/poker.js"></script>
+</body>
+</html>
