@@ -63,47 +63,10 @@ function getRandomElements(arr, numElements) {
 // -----------------------------------document -- logic
 
 const docBody = document.querySelector('body');
-/*
-const glowClass = document.querySelector('.glow');
-const backClass = document.querySelector('.back');
-const scriptClass = document.querySelector('.scriptClass');
 
-const topSection = document.createElement('section');
-topSection.className = "top";
-docBody.appendChild(topSection);
-
-scriptClass.insertAdjacentElement('beforebegin', topSection);
-*/
 
 const gameSection = document.querySelector('.memory-game');
 
-/*
-gameSection.className ='memory-game';
-docBody.appendChild(gameSection);
-
-scriptClass.insertAdjacentElement('beforebegin', gameSection)
-
-const playerCoinsDiv = document.createElement('div');
-playerCoinsDiv.className = "playerCoins";
-topSection.appendChild(playerCoinsDiv);
-const totalCoinsSpan = document.createElement('span');
-totalCoinsSpan.className = "totalCoins";
-playerCoinsDiv.appendChild(totalCoinsSpan);
-
-const scoreDiv = document.createElement('div');
-scoreDiv.className = "score";
-topSection.appendChild(scoreDiv);
-const currentScoreSpan = document.createElement('span');
-currentScoreSpan.className = "currentScore";
-scoreDiv.appendChild(currentScoreSpan);
-
-const coinsEarnedDiv = document.createElement('div');
-coinsEarnedDiv.className = "coinsEarned";
-topSection.appendChild(coinsEarnedDiv);
-const currentEarnedSpan = document.createElement('span');
-currentEarnedSpan.className = "currentEarned";
-coinsEarnedDiv.appendChild(currentEarnedSpan);
-*/
 
 
 // -----------------------------------card graphic logic
@@ -117,7 +80,7 @@ const cardSuit = getCardSuit(matchCard);
 
 
   
-  let cardElement = `../images/cards/${suitMap[cardSuit[0]]}/${cardValue}${cardSuit[0]}.png`;
+  let cardElement = `./images/cards/${suitMap[cardSuit[0]]}/${cardValue}${cardSuit[0]}.png`;
 
 
 
@@ -133,7 +96,7 @@ const cardSuit = getCardSuit(matchCard);
     
      const backFace = document.createElement('img');
      backFace.className = 'back-face';
-     backFace.src = `../images/cards/cardbacks.png`;
+     backFace.src = `./images/cards/cardbacks.png`;
      memoryCard.appendChild(backFace);
 
      // -----------------------------------css 
@@ -154,17 +117,31 @@ const cardSuit = getCardSuit(matchCard);
         background-color: rgb(22, 59, 22) !important;
     }
 
+    .top {
+      background-color: rgba(22, 59, 22)!important;
+      width: 100vw;
+      text-align:center;      
+    }
 
+    .wrapper{
+      margin: auto
+      background-color: rgb(22, 59, 22) !important;
+      width: 100vw;
+      height: 100vh;
+    
+    }
 
     .memory-game {
         width: 70vw;
         height: 70vw;
+        max-width: 640px;
+        max-height: 640px;
         margin: auto;
         display: flex;
         flex-wrap: wrap;
         perspective: 1000px;
-       
-
+        background-color: rgba(22, 59, 22)!important; 
+        
     }
 
 
@@ -198,6 +175,19 @@ const cardSuit = getCardSuit(matchCard);
     
     .front-face {
         transform:rotateY(180deg);
+    }
+
+      .btn {
+        padding: 3rem 4rem;
+        font-size: 2rem;
+        background-color: #326341;
+        color: white;
+        border-style: double;
+        border-radius: 5px;
+        border: 2px solid white;
+        cursor: pointer;
+        width: auto;
+        position: relative;
     }
     `;
 
@@ -278,13 +268,39 @@ function increaseScore() {
  document.querySelector(".currentScore").textContent = score;
 }
 
-function payOut() {
-    coinsEarned += score;
-    document.querySelector(".currentEarned").textContent = coinsEarned;
-    score = 0;
-    document.querySelector(".currentScore").textContent = score;
+// function payOut() {
+//     coinsEarned += score;
+//     document.querySelector(".currentEarned").textContent = coinsEarned;
+//     score = 0;
+//     document.querySelector(".currentScore").textContent = score;
 
-} 
+// } 
+function payOut() {
+  // Get the current player money from local storage or set to 0
+  let playerMoney = localStorage.getItem('playerMoney') || 0;
+
+  // Debugging log: Check the value of playerMoney from localStorage
+  console.log('Player Money (before parsing):', playerMoney);
+
+  // Ensure playerMoney is a number (parse it correctly)
+  playerMoney = parseInt(playerMoney, 10); // Explicitly parse as integer
+
+  // Debugging log: Check parsed playerMoney
+  console.log('Parsed Player Money:', playerMoney);
+
+  // Add score to the player money
+  playerMoney += score;
+
+  // Save the updated player money back to local storage
+  localStorage.setItem('playerMoney', playerMoney);
+
+  // Update the UI to show the new player money
+  document.querySelector(".currentEarned").textContent = playerMoney;
+
+  // Reset the score
+  score = 0;
+  document.querySelector(".currentScore").textContent = score;
+}
 
 function restart(){
     score = 0;
